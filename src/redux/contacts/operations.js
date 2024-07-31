@@ -4,11 +4,13 @@ import axios from "axios";
 axios.defaults.baseURL = `https://connections-api.goit.global/`;
 // ????
 // Fetch contacts
+
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/contacts");
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
