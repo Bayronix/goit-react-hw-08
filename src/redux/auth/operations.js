@@ -1,5 +1,5 @@
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 axios.defaults.baseURL = "https://connections-api.goit.global/";
 
@@ -12,37 +12,43 @@ const clearAuthHeader = () => {
 };
 
 export const register = createAsyncThunk(
-  "auth/register",
-  async (credentials, thunkAPI) => {
+  "/auth/register",
+  async (userData, thunkApi) => {
     try {
-      const res = await axios.post("/users/signup", credentials);
-      setAuthHeader(res.data.token);
-      return res.data;
+      const response = await axios.post("/users/signup", userData);
+      setAuthHeader(response.data.token);
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      console.error("Registration error:", error.response);
+      const errorMessage = error.response?.data?.message || error.message;
+      return thunkApi.rejectWithValue(errorMessage);
     }
   }
 );
 
 export const logIn = createAsyncThunk(
-  "auth/login",
-  async (credentials, thunkAPI) => {
+  "/auth/logIn",
+  async (credentials, thunkApi) => {
     try {
-      const res = await axios.post("/users/login", credentials);
-      setAuthHeader(res.data.token);
-      return res.data;
+      const response = await axios.post("/users/login", credentials);
+      setAuthHeader(response.data.token);
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      console.error("Login error:", error.response);
+      const errorMessage = error.response?.data?.message || error.message;
+      return thunkApi.rejectWithValue(errorMessage);
     }
   }
 );
 
-export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+export const logOut = createAsyncThunk("/auth/logOut", async (_, thunkApi) => {
   try {
     await axios.post("/users/logout");
     clearAuthHeader();
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    console.error("Logout error:", error.response);
+    const errorMessage = error.response?.data?.message || error.message;
+    return thunkApi.rejectWithValue(errorMessage);
   }
 });
 
@@ -52,18 +58,22 @@ export const refreshUser = createAsyncThunk(
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
 
-    if (persistedToken === null) {
+    if (!persistedToken) {
       return thunkAPI.rejectWithValue("Unable to fetch user");
     }
+
     try {
       setAuthHeader(persistedToken);
-      const res = await axios.get("/users/current");
-      return res.data;
+      const response = await axios.get("/users/current");
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      console.error("Refresh user error:", error.response);
+      const errorMessage = error.response?.data?.message || error.message;
+      return thunkAPI.rejectWithValue(errorMessage);
     }
   }
 );
+
 // {
 //   "user": {
 //     "name": "Vlad123",

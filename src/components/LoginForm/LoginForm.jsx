@@ -15,8 +15,14 @@ const validationSchema = Yup.object({
 const LoginForm = () => {
   const dispatch = useDispatch();
 
-  const handleLoginForm = (values) => {
-    dispatch(logIn(values));
+  const handleLoginForm = (values, { resetForm, setSubmitting }) => {
+    dispatch(logIn(values))
+      .then(() => {
+        resetForm();
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
   };
 
   return (
@@ -25,7 +31,7 @@ const LoginForm = () => {
       validationSchema={validationSchema}
       onSubmit={handleLoginForm}
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, isSubmitting }) => (
         <Form>
           <h3>Email</h3>
           <Field name="email" type="email" />
@@ -38,7 +44,9 @@ const LoginForm = () => {
           {errors.password && touched.password ? (
             <div>{errors.password}</div>
           ) : null}
-          <button type="submit">Submit</button>
+          <button type="submit" disabled={isSubmitting}>
+            Submit
+          </button>
         </Form>
       )}
     </Formik>
