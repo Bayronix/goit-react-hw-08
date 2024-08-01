@@ -15,6 +15,9 @@ const NavBar = () => {
         <h3 className="navbar-title">Your Name</h3>
         <ul className="nav-list">
           <li>
+            <NavLink to="/singIn">SingIn</NavLink>
+          </li>
+          <li>
             <NavLink to="/login">LogIn</NavLink>
           </li>
           <li>

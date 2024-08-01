@@ -3,6 +3,7 @@ import ContactComponent from "./Contacts/ContactComponent";
 import NavBar from "./NavBar/NavBar";
 import LoginForm from "./LoginForm/LoginForm";
 import HomePage from "./HomePage/HomePage";
+import RegisterForm from "./SignIn/SignIn";
 function App() {
   return (
     <div>
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/contacts" element={<ContactComponent />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/singIn" element={<RegisterForm />} />
       </Routes>
     </div>
   );
