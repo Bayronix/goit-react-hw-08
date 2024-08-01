@@ -14,7 +14,6 @@ export const fetchContacts = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
-      console.log(token);
       if (token) setContactsHeader(token);
 
       const response = await axios.get("/contacts");

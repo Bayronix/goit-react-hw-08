@@ -17,9 +17,7 @@ const RegisterForm = () => {
   const handleRegisterForm = (values, { setSubmitting, setErrors }) => {
     dispatch(register(values))
       .unwrap()
-      .then(() => {
-        // handle success, e.g., redirect to a different page
-      })
+      .then(() => {})
       .catch((error) => {
         setErrors({ apiError: error });
         setSubmitting(false);
