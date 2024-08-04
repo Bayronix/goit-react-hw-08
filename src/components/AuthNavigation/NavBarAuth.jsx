@@ -1,19 +1,14 @@
 import { NavLink } from "react-router-dom";
 
-const NavBar = () => {
+const AuthNavigation = () => {
   return (
     <header className="navbar">
       <nav>
         <ul className="nav-list">
           <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-        </ul>
-        <h3 className="navbar-title">Your Name</h3>
-        <ul className="nav-list">
-          <li>
             <NavLink to="/signIn">SingIn</NavLink>
           </li>
+
           <li>
             <NavLink to="/login">LogIn</NavLink>
           </li>
@@ -24,4 +19,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default AuthNavigation;

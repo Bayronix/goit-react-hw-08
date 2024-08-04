@@ -1,30 +1,32 @@
-import { Route, Routes } from "react-router";
-import ContactsPage from "./Contacts/ContactsPage";
-import NavBar from "./NavBar/NavBar";
-import RegistrationPage from "./RegistrationPage/RegistrationPage";
-import HomePage from "./HomePage/HomePage";
-import LoginPage from "./LoginPage/LoginPage";
-import NavBarAuth from "./NavBar/NavBarAuth";
-import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../redux/auth/selectors";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "../pages/HomePage/HomePage";
+import ContactsPage from "../pages/ContactsPage/ContactsPage";
+import LoginPage from "../pages/LoginPage/LoginPage";
+import RegistrationPage from "../pages/RegistrationPage/RegistrationPage";
+import Layout from "./Layout/Layout";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import RestrictedRoute from "./RestrictedMode/RestrictedMode";
+
 function App() {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  console.log("Is Logged In:", isLoggedIn);
   return (
     <div>
-      {isLoggedIn ? <NavBarAuth /> : <NavBar />}
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/contacts" element={<ContactsPage />} />
-        <Route
-          path="/login"
-          element={isLoggedIn ? <HomePage /> : <LoginPage />}
-        />
-        <Route
-          path="/signIn"
-          element={isLoggedIn ? <HomePage /> : <RegistrationPage />}
-        />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/contacts"
+            element={<PrivateRoute element={<ContactsPage />} />}
+          />
+          <Route
+            path="/login"
+            element={<RestrictedRoute element={<LoginPage />} />}
+          />
+          <Route
+            path="/signIn"
+            element={<RestrictedRoute element={<RegistrationPage />} />}
+          />
+        </Routes>
+      </Layout>
     </div>
   );
 }

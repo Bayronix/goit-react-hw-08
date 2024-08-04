@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../../redux/contacts/operations";
+import toast, { Toaster } from "react-hot-toast";
 
 import styles from "./ContactForm.module.css";
 
@@ -19,9 +20,18 @@ const validationSchema = Yup.object().shape({
 const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(addContact(values));
-    resetForm();
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      await dispatch(addContact(values));
+      resetForm();
+      toast.success(`Contact added`, {
+        duration: 3000,
+      });
+    } catch (error) {
+      toast.error("Failed to add contact", {
+        duration: 3000,
+      });
+    }
   };
 
   return (
@@ -64,6 +74,7 @@ const ContactForm = () => {
           <button className={styles.button} type="submit">
             Add Contact
           </button>
+          <Toaster position="bottom-right" />
         </Form>
       )}
     </Formik>

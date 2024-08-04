@@ -1,14 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setQuery } from "../../../redux/filters/slice";
-import { selectNameFilter } from "../../../redux/filters/selectors";
+import { setQuery, setQueryNumber } from "../../../redux/filters/slice";
+import {
+  selectNameFilter,
+  selectNumberFilter,
+} from "../../../redux/filters/selectors";
 import styles from "./SearchBox.module.css";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
   const query = useSelector(selectNameFilter);
+  const queryNum = useSelector(selectNumberFilter);
 
   const handleChange = (event) => {
     dispatch(setQuery(event.target.value));
+  };
+
+  const handleChangeNumber = (event) => {
+    dispatch(setQueryNumber(event.target.value));
   };
 
   return (
@@ -20,6 +28,13 @@ const SearchBox = () => {
         placeholder="Search by name"
         value={query}
         onChange={handleChange}
+      />
+      <input
+        className={styles.field}
+        type="text"
+        placeholder="Search by number"
+        value={queryNum}
+        onChange={handleChangeNumber}
       />
     </div>
   );
