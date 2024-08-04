@@ -1,6 +1,19 @@
-import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { logOut } from "../../redux/auth/operations";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 const NavBarAuth = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  const handleLogout = () => {
+    dispatch(logOut()).then(() => {
+      navigate("/");
+    });
+  };
+
   return (
     <header className="navbar">
       <nav>
@@ -13,12 +26,15 @@ const NavBarAuth = () => {
           </li>
         </ul>
         <h3 className="navbar-title">Your Name</h3>
-        <ul className="nav-list">
-          <li>
-            <NavLink to="/logout">LogOut</NavLink>
-            {/* Має за  isLoggedIn: false, появлятися або зникати логін*/}
-          </li>
-        </ul>
+        {isLoggedIn && (
+          <ul className="nav-list">
+            <li>
+              <button type="button" onClick={handleLogout}>
+                LogOut
+              </button>
+            </li>
+          </ul>
+        )}
       </nav>
       <hr />
     </header>

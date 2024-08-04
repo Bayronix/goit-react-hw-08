@@ -11,13 +11,18 @@ const validationSchema = Yup.object({
     .required("Required"),
 });
 
-const RegisterForm = () => {
+const RegistrationPage = () => {
   const dispatch = useDispatch();
 
-  const handleRegisterForm = (values, { setSubmitting, setErrors }) => {
+  const handleRegisterForm = (
+    values,
+    { setSubmitting, setErrors, resetForm }
+  ) => {
     dispatch(register(values))
       .unwrap()
-      .then(() => {})
+      .then(() => {
+        resetForm();
+      })
       .catch((error) => {
         setErrors({ apiError: error });
         setSubmitting(false);
@@ -59,4 +64,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default RegistrationPage;

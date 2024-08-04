@@ -2,7 +2,7 @@ import ContactForm from "./ContactForm/ContactForm";
 import SearchBox from "./SearchBox/SearchBox";
 import ContactList from "./ContactList/ContactList";
 
-function ContactComponent() {
+function ContactsPage() {
   return (
     <div>
       <h1>Phonebook</h1>
@@ -13,4 +13,4 @@ function ContactComponent() {
   );
 }
 
-export default ContactComponent;
+export default ContactsPage;
