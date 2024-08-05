@@ -1,0 +1,44 @@
+.userMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.navbarTitle {
+  background-color: #333;
+  color: #fff;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.navList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.navList li {
+  margin: 0;
+}
+
+.navList li button {
+  background-color: #ffcc00;
+  color: #333;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.navList li button:hover {
+  background-color: #ffa500;
+}

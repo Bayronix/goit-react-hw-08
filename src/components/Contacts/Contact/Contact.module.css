@@ -1,13 +1,9 @@
 .list {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  justify-content: space-between;
+  padding: 10px;
   border-bottom: 1px solid #ddd;
-}
-
-.list:last-child {
-  border-bottom: none;
 }
 
 .name {
@@ -21,68 +17,47 @@
 
 .button {
   padding: 5px 10px;
+  background-color: #ff4d4d;
   color: white;
-  background-color: #007bff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #e60000;
 }
 
-.modal-overlay {
+.modalContent {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.modalOverlay {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: rgba(0, 0, 0, 0.75);
 }
 
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  width: 300px;
-  text-align: center;
-}
-
-.modal-button {
+.modalButton {
   margin: 10px;
-  padding: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-@keyframes slowFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slowFadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-.slow-toast-enter {
-  animation: slowFadeIn 1s ease-in-out forwards;
-}
-
-.slow-toast-exit {
-  animation: slowFadeOut 1s ease-in-out forwards;
+.modalButton:hover {
+  background-color: #0056b3;
 }

@@ -1,0 +1,41 @@
+.form {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.field {
+  min-width: 280px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.error {
+  color: #ff0000;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.button {
+  width: 300px;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:disabled {
+  background-color: #ccc;
+}
+
+h3 {
+  margin-bottom: 5px;
+  color: #333;
+}

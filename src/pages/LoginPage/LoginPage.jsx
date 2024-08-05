@@ -22,10 +22,6 @@ const LoginPage = () => {
     try {
       await dispatch(logIn(values)).unwrap();
       resetForm();
-    } catch (error) {
-      toast.error(error.message || "Failed to log in", {
-        duration: 3000,
-      });
     } finally {
       setSubmitting(false);
     }
