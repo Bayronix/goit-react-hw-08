@@ -6,11 +6,18 @@ import contactsReducer from "./contacts/slice";
 import filterReducer from "./filters/slice";
 import { authReducer } from "./auth/slice";
 
-// Combine the reducers
+const authPersistConfig = {
+  key: "auth",
+  storage,
+  whitelist: ["token"],
+};
+
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
+
 const rootReducer = combineReducers({
   contacts: contactsReducer,
   filter: filterReducer,
-  auth: authReducer,
+  auth: persistedAuthReducer,
 });
 
 const persistConfig = {
@@ -23,7 +30,6 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
-
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

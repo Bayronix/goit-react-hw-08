@@ -3,13 +3,11 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
 import { Toaster } from "react-hot-toast";
-
 import styles from "./LoginPage.module.css";
 
 // Validation schema
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email address").required("Required"),
-  name: Yup.string().required("Required"),
   password: Yup.string()
     .min(6, "Password must be at least 6 characters")
     .required("Required"),
@@ -30,7 +28,7 @@ const LoginPage = () => {
   return (
     <>
       <Formik
-        initialValues={{ name: "", password: "", email: "" }}
+        initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
         onSubmit={handleLoginForm}
       >
@@ -40,14 +38,6 @@ const LoginPage = () => {
             <Field name="email" type="email" className={styles.field} />
             <ErrorMessage
               name="email"
-              component="div"
-              className={styles.error}
-            />
-
-            <h3>Name</h3>
-            <Field name="name" type="text" className={styles.field} />
-            <ErrorMessage
-              name="name"
               component="div"
               className={styles.error}
             />

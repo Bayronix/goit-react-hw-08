@@ -9,8 +9,11 @@ const AuthNavigation = () => {
           <li>
             <NavLink
               to="/signIn"
-              className={styles["nav-link"]}
-              activeClassName={styles.active}
+              className={({ isActive }) =>
+                isActive
+                  ? `${styles["nav-link"]} ${styles.active}`
+                  : styles["nav-link"]
+              }
             >
               SignIn
             </NavLink>
@@ -18,8 +21,11 @@ const AuthNavigation = () => {
           <li>
             <NavLink
               to="/login"
-              className={styles["nav-link"]}
-              activeClassName={styles.active}
+              className={({ isActive }) =>
+                isActive
+                  ? `${styles["nav-link"]} ${styles.active}`
+                  : styles["nav-link"]
+              }
             >
               LogIn
             </NavLink>

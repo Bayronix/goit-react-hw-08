@@ -67,6 +67,7 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
 // {
 //   "user": {
 //     "name": "Vlad123",
