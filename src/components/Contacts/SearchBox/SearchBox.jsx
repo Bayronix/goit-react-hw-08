@@ -3,7 +3,7 @@ import { setQuery, setQueryNumber } from "../../../redux/filters/slice";
 import {
   selectNameFilter,
   selectNumberFilter,
-} from "../../../redux/filters/selectors";
+} from "../../../redux/filters/selectors"; // Імпорт селекторів з правильного файлу
 import styles from "./SearchBox.module.css";
 
 const SearchBox = () => {

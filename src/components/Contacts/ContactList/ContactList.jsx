@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Contact from "../Contact/Contact";
 import styles from "./ContactList.module.css";
 import { fetchContacts } from "../../../redux/contacts/operations";
-import { selectFilteredContacts } from "../../../redux/contacts/slice";
+import { selectFilteredContacts } from "../../../redux/contacts/selectors";
 
 const ContactList = () => {
   const dispatch = useDispatch();
